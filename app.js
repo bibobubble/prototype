@@ -19,31 +19,6 @@ actionButtons.forEach((button) => {
   button.addEventListener("click", () => showSection(button.dataset.sectionTarget));
 });
 
-const principleText = document.getElementById("principle-text");
-const principleCopy = {
-  traceable:
-    "Evidence-source tags separate financial facts, management communication, market data, and model output.",
-  calibrated:
-    "The page uses “Review Trigger: High” instead of “Red Alert” so analysts treat it as a prompt for judgement, not an automated decision.",
-  actionable:
-    "The prototype ends with concrete next actions: monitoring notes, further financial review, memo update, or watchlist discussion.",
-};
-
-document.querySelectorAll(".principle").forEach((button) => {
-  button.addEventListener("click", () => {
-    document.querySelectorAll(".principle").forEach((item) => item.classList.remove("active"));
-    button.classList.add("active");
-    principleText.textContent = principleCopy[button.dataset.principle];
-  });
-});
-
-document.querySelectorAll(".rule").forEach((rule) => {
-  rule.addEventListener("click", () => {
-    document.querySelectorAll(".rule").forEach((item) => item.classList.remove("active-rule"));
-    rule.classList.add("active-rule");
-  });
-});
-
 const boeingCalls = {
   "2024q1": {
     label: "2024 Q1",
@@ -172,70 +147,6 @@ document.querySelectorAll(".time-point").forEach((button) => {
     document.querySelectorAll(".time-point").forEach((item) => item.classList.remove("active"));
     button.classList.add("active");
     updateBoeingCall(button.dataset.call);
-  });
-});
-
-const nvdaCalls = {
-  "2024q4": {
-    period: "NVDA 2024 Q4",
-    trigger: "Watch Trigger: Narrative Review",
-    summary:
-      "Highest tone disappointment in the NVDA pilot. It is useful for testing whether analysts treat a softer-than-expected AI narrative as a monitoring cue rather than as an automatic downgrade.",
-    bars: [100, 69, 51],
-    labels: ["0.0062", "11.88", "34.4%"],
-    metricLabels: ["Tone disappointment", "Risk intensity", "Historical market context"],
-    themes: ["AI demand expectations", "Semiconductor cycle", "Rating headroom"],
-  },
-  "2025q4": {
-    period: "NVDA 2025 Q4",
-    trigger: "Watch Trigger: Narrative Context",
-    summary:
-      "Tone is positive while historical market context is elevated. The case shows why communication, market context, and credit themes should not be collapsed into one score.",
-    bars: [80, 67, 84],
-    labels: ["delight 0.0056", "11.62", "56.8%"],
-    metricLabels: ["Tone delight", "Risk intensity", "Historical market context"],
-    themes: ["Valuation sensitivity", "AI capex cycle", "Market volatility"],
-  },
-  "2026q1": {
-    period: "NVDA 2026 Q1",
-    trigger: "Watch Trigger: Thematic Review",
-    summary:
-      "Highest risk intensity in the NVDA pilot, driven by export-control and China-market themes. The design prompts thematic credit review without claiming a forward market forecast.",
-    bars: [84, 100, 100],
-    labels: ["0.0052", "17.28", "67.3%"],
-    metricLabels: ["Tone disappointment", "Risk intensity", "Historical market context"],
-    themes: ["Export controls", "China exposure", "Inventory charge"],
-  },
-  "2026q4": {
-    period: "NVDA 2026 Q4",
-    trigger: "Watch Trigger: Positive Narrative Check",
-    summary:
-      "Highest tone delight in the NVDA pilot. The analyst task is to avoid treating a strongly positive AI narrative as automatically low credit risk.",
-    bars: [100, 68, 48],
-    labels: ["delight 0.0070", "11.82", "32.2%"],
-    metricLabels: ["Tone delight", "Risk intensity", "Historical market context"],
-    themes: ["Positive AI narrative", "Margin durability", "Customer concentration"],
-  },
-};
-
-function updateNvdaCall(key) {
-  const call = nvdaCalls[key];
-  document.getElementById("nvda-period").textContent = call.period;
-  document.getElementById("nvda-trigger").textContent = call.trigger;
-  document.getElementById("nvda-summary").textContent = call.summary;
-  ["one", "two", "three"].forEach((name, index) => {
-    document.getElementById(`nvda-bar-${name}`).style.width = `${call.bars[index]}%`;
-    document.getElementById(`nvda-bar-${name}-label`).textContent = call.metricLabels[index];
-    document.getElementById(`nvda-bar-${name}-text`).textContent = call.labels[index];
-  });
-  document.getElementById("nvda-themes").innerHTML = call.themes.map((theme) => `<span>${theme}</span>`).join("");
-}
-
-document.querySelectorAll(".nvda-tab").forEach((button) => {
-  button.addEventListener("click", () => {
-    document.querySelectorAll(".nvda-tab").forEach((item) => item.classList.remove("active"));
-    button.classList.add("active");
-    updateNvdaCall(button.dataset.nvdaCall);
   });
 });
 
@@ -453,5 +364,4 @@ document.querySelectorAll(".action-choice").forEach((button) => {
 });
 
 updateBoeingCall("2024q3");
-updateNvdaCall("2024q4");
 updatePrototype("2024q3");

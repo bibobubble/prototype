@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Merton + Management Tone | Supervisor Pitch</title>
+    <title>Earnings-Call Credit-Risk Review Trigger | Research Prototype</title>
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
@@ -13,21 +13,14 @@
           <span class="mark">MT</span>
           <div>
             <strong>Merton + Tone</strong>
-            <span>DwBS Project Pitch</span>
+            <span>MSc Research Prototype</span>
           </div>
         </div>
 
         <nav class="nav-list">
           <button class="nav-item active" data-section="overview">Overview</button>
-          <button class="nav-item" data-section="problem">Problem</button>
-          <button class="nav-item" data-section="model">Model Layer</button>
-          <button class="nav-item" data-section="design">Design Layer</button>
           <button class="nav-item" data-section="case">Boeing Case</button>
-          <button class="nav-item" data-section="aiwatch">AI Credit Watch</button>
-          <button class="nav-item" data-section="evaluation">Evaluation</button>
-          <button class="nav-item" data-section="mental">Mental Model</button>
           <button class="nav-item" data-section="prototype">Prototype</button>
-          <button class="nav-item" data-section="ask">Supervisor Ask</button>
         </nav>
 
         <div class="pitch-meta">
@@ -42,7 +35,7 @@
         <section class="section active" id="overview">
           <div class="hero-grid">
             <div class="hero-copy">
-              <p class="kicker">Refined dissertation direction</p>
+              <p class="kicker">MSc research prototype · Imperial College London</p>
               <h1>Designing a behaviourally informed credit-risk review trigger</h1>
               <p class="lead">
                 The project combines management communication signals from earnings calls with a
@@ -50,9 +43,8 @@
                 decision-support prototype.
               </p>
               <div class="cta-row">
-                <button class="primary-action" data-section-target="model">Show the math</button>
+                <button class="primary-action" data-section-target="prototype">Open the prototype</button>
                 <button class="secondary-action" data-section-target="case">Open Boeing case</button>
-                <button class="secondary-action" data-section-target="aiwatch">Open AI sector</button>
               </div>
             </div>
 
@@ -83,165 +75,8 @@
           </div>
         </section>
 
-        <section class="section" id="problem">
-          <p class="kicker">Research gap</p>
-          <h2>The technical problem and the behavioural problem are connected</h2>
-          <div class="two-column">
-            <article class="panel">
-              <h3>Technical gap</h3>
-              <p>
-                Merton-style models rely on asset volatility. In practice this is often estimated
-                from historical market data, which can lag forward-looking risk information revealed
-                during earnings calls.
-              </p>
-              <ul>
-                <li>Historical sigma is backward-looking.</li>
-                <li>Management tone may reveal uncertainty earlier.</li>
-                <li>Tone cannot directly replace volatility.</li>
-              </ul>
-            </article>
 
-            <article class="panel">
-              <h3>Behavioural gap</h3>
-              <p>
-                Analysts may underweight qualitative warning signs because they are hard to quantify,
-                compare, trust, and justify in formal credit workflows.
-              </p>
-              <ul>
-                <li>Mixed narratives increase cognitive load.</li>
-                <li>Qualitative tone lacks traceable action rules.</li>
-                <li>Overstrong model labels risk automation bias.</li>
-              </ul>
-            </article>
-          </div>
 
-          <div class="framework-band">
-            <div>
-              <span class="tag">COM-B</span>
-              <strong>Capability</strong>
-              <p>Can analysts understand what the tone signal means?</p>
-            </div>
-            <div>
-              <span class="tag">COM-B</span>
-              <strong>Opportunity</strong>
-              <p>Does the trigger fit post-call review workflows?</p>
-            </div>
-            <div>
-              <span class="tag">COM-B</span>
-              <strong>Motivation</strong>
-              <p>Do analysts trust the signal enough to investigate?</p>
-            </div>
-          </div>
-        </section>
-
-        <section class="section" id="model">
-          <p class="kicker">Quantitative risk layer</p>
-          <h2>Math remains in the project, but as an evidence layer</h2>
-          <div class="formula-grid">
-            <article class="formula-card">
-              <h3>1. Volatility feasibility test</h3>
-              <code>log(σ<sub>t+1</sub>) = α + ρ log(σ<sub>t</sub>) + β<sub>1</sub> Disappointment<sub>t</sub> + β<sub>2</sub> Delight<sub>t</sub> + γ Controls<sub>t</sub> + ε<sub>t</sub></code>
-              <p>
-                Tests whether unexpectedly negative tone adds information beyond historical volatility, separately from unexpectedly positive tone.
-              </p>
-            </article>
-
-            <article class="formula-card">
-              <h3>2. Conditional tone adjustment</h3>
-              <code>σ<sub>tone</sub> = σ<sub>historical</sub> × exp(β<sub>1</sub> × Disappointment)</code>
-              <p>
-                Only valid if a larger panel supports disappointment as a volatility signal.
-              </p>
-            </article>
-
-            <article class="formula-card wide">
-              <h3>3. Merton-style default distance</h3>
-              <code>DD = [ln(V / D) + (μ - 0.5σ<sub>V</sub><sup>2</sup>)T] / (σ<sub>V</sub>√T)</code>
-              <code>PD = N(-DD)</code>
-              <p>
-                The dashboard can show baseline DD and, if justified, tone-adjusted DD. Otherwise tone remains a qualitative flag.
-              </p>
-            </article>
-
-            <article class="formula-card wide">
-              <h3>4. Literature-aligned tone split</h3>
-              <code>tone_surprise = actual_tone - expected_tone</code>
-              <code>disappointment = max(expected_tone - actual_tone, 0)</code>
-              <code>delight = max(actual_tone - expected_tone, 0)</code>
-              <p>
-                This adapts Druz, Wagner and Zeckhauser's residual-negativity logic to a net-positivity pilot score.
-              </p>
-            </article>
-          </div>
-
-          <div class="decision-rules">
-            <h3>Evidence-based decision rules</h3>
-            <div class="rule active-rule" data-rule="a">
-              <span>A</span>
-              <p>Tone predicts volatility → tone-adjusted Merton review trigger.</p>
-            </div>
-            <div class="rule" data-rule="b">
-              <span>B</span>
-              <p>Tone is mixed → triage signal for high-risk or subgroup cases.</p>
-            </div>
-            <div class="rule" data-rule="c">
-              <span>C</span>
-              <p>Tone is weak → explainable qualitative review flag only.</p>
-            </div>
-          </div>
-        </section>
-
-        <section class="section" id="design">
-          <p class="kicker">Behavioural design layer</p>
-          <h2>The output is a review trigger, not an automated rating decision</h2>
-          <div class="prototype-layout">
-            <div class="mock-dashboard">
-              <div class="mock-header">
-                <div>
-                  <span>The Boeing Company (BA)</span>
-                  <strong>Q3 2025 Earnings Call</strong>
-                </div>
-                <b>Review Trigger: High</b>
-              </div>
-
-              <div class="evidence-row">
-                <div>
-                  <span>Evidence confidence</span>
-                  <strong>Medium</strong>
-                </div>
-                <div>
-                  <span>Model validation</span>
-                  <strong>Pending</strong>
-                </div>
-              </div>
-
-              <div class="balance">
-                <div>
-                  <h4>Positive signals</h4>
-                  <p>Strong demand</p>
-                  <p>Record backlog</p>
-                  <p>Improved auto margins</p>
-                </div>
-                <div>
-                  <h4>Credit-risk signals</h4>
-                  <p>$4.9B 777X charge</p>
-                  <p>Delivery delay to 2027</p>
-                  <p>Certification risk</p>
-                </div>
-              </div>
-            </div>
-
-            <div class="design-notes">
-              <h3>Design principles</h3>
-              <button class="principle active" data-principle="traceable">Traceable evidence</button>
-              <button class="principle" data-principle="calibrated">Trust calibration</button>
-              <button class="principle" data-principle="actionable">Actionable workflow</button>
-              <p id="principle-text">
-                Evidence-source tags separate financial facts, management communication, market data, and model output.
-              </p>
-            </div>
-          </div>
-        </section>
 
         <section class="section" id="case">
           <p class="kicker">Feasibility case</p>
@@ -277,277 +112,12 @@
           </div>
 
           <p class="footnote">
-            Boeing replaces Tesla as the main case. Transcript tone scoring and leakage-safe market forecasts are complete for all nine calls.
+            Transcript tone scoring and leakage-safe market forecasts are complete for all nine Boeing calls (2024 Q1 – 2026 Q1).
           </p>
         </section>
 
-        <section class="section" id="aiwatch">
-          <p class="kicker">Sector extension</p>
-          <h2>AI semiconductor firms need credit monitoring, but through a different risk mechanism</h2>
 
-          <div class="watch-comparison">
-            <article>
-              <span>Primary case</span>
-              <h3>Boeing: distress-oriented credit review</h3>
-              <p>
-                Boeing is useful because the risk themes are already credit-relevant: production disruption,
-                cash-flow pressure, certification delay, labour disruption, program charges, and recovery credibility.
-              </p>
-              <strong>Dashboard role: Credit-risk Review Trigger</strong>
-            </article>
-            <article>
-              <span>Sector extension</span>
-              <h3>NVIDIA: narrative-sensitive credit watch</h3>
-              <p>
-                NVIDIA is not a near-term distress case. The credit question is whether strong AI-growth narratives
-                can hide emerging risks such as export controls, customer concentration, semiconductor cyclicality,
-                future margin pressure, and AI capex sustainability.
-              </p>
-              <strong>Dashboard role: AI Semiconductor Credit Watch Trigger</strong>
-            </article>
-          </div>
 
-          <div class="credit-pathway" aria-label="AI semiconductor credit monitoring pathway">
-            <div>
-              <span>Strong AI narrative</span>
-              <strong>positive management tone</strong>
-            </div>
-            <div>
-              <span>Hidden credit themes</span>
-              <strong>export controls, capex cycle, concentration risk</strong>
-            </div>
-            <div>
-              <span>Analyst question</span>
-              <strong>is rating headroom still robust?</strong>
-            </div>
-            <div>
-              <span>Design action</span>
-              <strong>trigger thematic credit watch, not automatic downgrade</strong>
-            </div>
-          </div>
-
-          <div class="nvda-result-panel">
-            <div class="nvda-result-head">
-              <div>
-                <span>NVIDIA pilot result</span>
-                <strong>Tone does not justify tone-adjusted sigma</strong>
-              </div>
-              <b>Use as credit-watch signal</b>
-            </div>
-
-            <div class="kpi-grid">
-              <div class="kpi-block">
-                <span>Transcripts processed</span>
-                <strong>13</strong>
-                <small>FY2024 Q1 to FY2027 Q1</small>
-              </div>
-              <div class="kpi-block">
-                <span>Tone comparison rows</span>
-                <strong>11</strong>
-                <small>Retrospective research sample only</small>
-              </div>
-              <div class="kpi-block">
-                <span>Highest risk intensity</span>
-                <strong>17.28</strong>
-                <small>NVDA 2026 Q1, export-control shock context</small>
-              </div>
-              <div class="kpi-block">
-                <span>Tone beta direction</span>
-                <strong>Negative</strong>
-                <small>Not supportive of tone-adjusted Merton sigma</small>
-              </div>
-            </div>
-
-            <div class="nvda-evidence-grid">
-              <div>
-                <h3>What the result says</h3>
-                <ul>
-                  <li>The exploratory tone coefficient was negative, so it does not support the original volatility-risk hypothesis.</li>
-                  <li>No forward market forecast has been fitted for this extension case.</li>
-                  <li>NVIDIA should be used as a mixed-evidence credit-watch case, not as proof of tone-adjusted Merton.</li>
-                </ul>
-              </div>
-              <div>
-                <h3>Moody's analyst implication</h3>
-                <ul>
-                  <li>Do not treat positive AI tone as low credit risk.</li>
-                  <li>Track narrative-sensitive themes: export controls, AI capex durability, customer concentration, margins, and semiconductor cycle.</li>
-                  <li>Use the trigger to update monitoring notes or request thematic credit review.</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-
-          <div class="nvda-case-card">
-            <div class="nvda-case-head">
-              <div>
-                <span>NVIDIA mini case selector</span>
-                <strong>AI semiconductor credit-watch signals by quarter</strong>
-              </div>
-              <div class="nvda-tabs" aria-label="NVIDIA quarter selector">
-                <button class="nvda-tab active" data-nvda-call="2024q4">2024 Q4</button>
-                <button class="nvda-tab" data-nvda-call="2025q4">2025 Q4</button>
-                <button class="nvda-tab" data-nvda-call="2026q1">2026 Q1</button>
-                <button class="nvda-tab" data-nvda-call="2026q4">2026 Q4</button>
-              </div>
-            </div>
-
-            <div class="nvda-case-body">
-              <div>
-                <span id="nvda-period">NVDA 2024 Q4</span>
-                <h3 id="nvda-trigger">Watch Trigger: Narrative Review</h3>
-                <p id="nvda-summary">
-                  Highest tone disappointment in the NVDA pilot. It is useful for testing whether analysts treat a softer-than-expected AI narrative as a monitoring cue rather than as an automatic downgrade.
-                </p>
-                <div class="theme-row" id="nvda-themes">
-                  <span>AI demand expectations</span>
-                  <span>Semiconductor cycle</span>
-                  <span>Rating headroom</span>
-                </div>
-              </div>
-
-              <div class="nvda-metrics">
-                <label><span id="nvda-bar-one-label">Tone disappointment</span> <span id="nvda-bar-one-text">0.0062</span></label>
-                <div><span id="nvda-bar-one" style="width: 100%"></span></div>
-                <label><span id="nvda-bar-two-label">Risk intensity</span> <span id="nvda-bar-two-text">11.88</span></label>
-                <div><span id="nvda-bar-two" style="width: 69%"></span></div>
-                <label><span id="nvda-bar-three-label">Historical sigma</span> <span id="nvda-bar-three-text">34.4%</span></label>
-                <div><span id="nvda-bar-three" style="width: 51%"></span></div>
-              </div>
-            </div>
-
-            <div class="nvda-note">
-              <strong>Interpretation rule:</strong>
-              NVIDIA quarters are not used to prove tone-adjusted Merton. Historical sigma is context only; a forward forecast has not been fitted for this extension case.
-            </div>
-          </div>
-
-          <div class="sector-grid">
-            <div>
-              <strong>NVIDIA</strong>
-              <span>AI demand, export controls, customer concentration</span>
-            </div>
-            <div>
-              <strong>Micron</strong>
-              <span>HBM cycle, memory pricing, margin volatility</span>
-            </div>
-            <div>
-              <strong>Samsung</strong>
-              <span>memory cycle, foundry pressure, capex discipline</span>
-            </div>
-            <div>
-              <strong>SK Hynix</strong>
-              <span>HBM supply, customer concentration, cycle exposure</span>
-            </div>
-          </div>
-        </section>
-
-        <section class="section" id="evaluation">
-          <p class="kicker">Evaluation plan</p>
-          <h2>Small scenario study to test comprehension, trust, and actionability</h2>
-          <div class="evaluation-grid">
-            <div class="step">
-              <span>01</span>
-              <strong>Participant profile</strong>
-              <p>3-5 finance or risk-background participants.</p>
-            </div>
-            <div class="step">
-              <span>02</span>
-              <strong>Scenario task</strong>
-              <p>Review Boeing after an earnings call and select the next credit-review action.</p>
-            </div>
-            <div class="step">
-              <span>03</span>
-              <strong>Measured outcomes</strong>
-              <p>Comprehension, trust, limitation clarity, actionability, workflow fit.</p>
-            </div>
-            <div class="step">
-              <span>04</span>
-              <strong>Iteration</strong>
-              <p>Revise evidence tags, alert label, model context, and analyst workflow path.</p>
-            </div>
-          </div>
-
-          <div class="simulated-findings">
-            <h3>Simulated rehearsal findings</h3>
-            <ul>
-              <li>Users understood the trigger logic.</li>
-              <li>Trust depended on separating financial facts from tone interpretation.</li>
-              <li>“Red Alert” sounded too strong, so it became “Review Trigger: High”.</li>
-              <li>Users wanted market and volatility context beside the qualitative signal.</li>
-            </ul>
-          </div>
-        </section>
-
-        <section class="section" id="mental">
-          <p class="kicker">Participant mental model</p>
-          <h2>What happens in the mind of participants during the prototype test</h2>
-
-          <div class="mental-board" aria-label="CFA-inspired participant mental model diagram">
-            <div class="confounder-band">
-              <span>Confounding variables</span>
-              <strong>Finance experience</strong>
-              <strong>Case familiarity</strong>
-              <strong>Numeracy</strong>
-              <strong>Prior risk attitude</strong>
-              <strong>Time pressure</strong>
-            </div>
-
-            <div class="diagram-row inputs-row">
-              <div class="diagram-title">Observable dashboard inputs</div>
-              <div class="observable-box">Tone disappointment / delight</div>
-              <div class="observable-box">Risk-term intensity</div>
-              <div class="observable-box">Pre-call market forecast + historical context</div>
-              <div class="observable-box">Evidence tags + review trigger label</div>
-            </div>
-
-            <div class="arrow-row" aria-hidden="true">
-              <span></span><span></span><span></span><span></span>
-            </div>
-
-            <div class="diagram-row latent-row">
-              <div class="diagram-title">Latent variables inside participant mind</div>
-              <div class="latent-node">
-                <strong>Comprehension</strong>
-                <span>Do they understand the signal?</span>
-              </div>
-              <div class="latent-node">
-                <strong>Perceived risk severity</strong>
-                <span>How serious does the case feel?</span>
-              </div>
-              <div class="latent-node">
-                <strong>Calibrated trust</strong>
-                <span>Do they trust it without over-trusting it?</span>
-              </div>
-              <div class="latent-node">
-                <strong>Action readiness</strong>
-                <span>Are they prepared to act?</span>
-              </div>
-            </div>
-
-            <div class="latent-links" aria-hidden="true">
-              <span></span><span></span><span></span>
-            </div>
-
-            <div class="measurement-row">
-              <div class="diagram-title">Measured indicators</div>
-              <div class="indicator-box">Quiz accuracy</div>
-              <div class="indicator-box">Risk / urgency rating</div>
-              <div class="indicator-box">Trust + limitation awareness</div>
-              <div class="indicator-box">Selected next action + rationale</div>
-            </div>
-
-            <div class="mental-note">
-              <strong>Key distinction:</strong>
-              tone and risk metrics are observable inputs. The latent variables are the participant's
-              internal states: comprehension, perceived risk, calibrated trust, and action readiness.
-            </div>
-
-            <a class="asset-link" href="assets/participant-mental-model.svg" target="_blank" rel="noreferrer">
-              Open slide-ready SVG version
-            </a>
-          </div>
-        </section>
 
         <section class="section" id="prototype">
           <p class="kicker">Interactive artefact</p>
@@ -739,33 +309,6 @@
           </div>
         </section>
 
-        <section class="section" id="ask">
-          <p class="kicker">Supervisor feedback needed</p>
-          <h2>Four project decisions to resolve with supervision</h2>
-          <div class="ask-list">
-            <div>
-              <span>01</span>
-              <p>Is the current framing strong enough as a Design with Behaviour Science project, where the main contribution is a calibrated analyst decision-support intervention rather than a financial prediction model?</p>
-            </div>
-            <div>
-              <span>02</span>
-              <p>Should the quantitative layer remain a Boeing feasibility pilot, or should it add a small AI semiconductor credit-watch extension to compare distress-oriented and narrative-sensitive risk mechanisms?</p>
-            </div>
-            <div>
-              <span>03</span>
-              <p>Is the interactive credit-risk review trigger prototype an appropriate final design artefact, or should the outcome be reframed as a workflow framework / service blueprint?</p>
-            </div>
-            <div>
-              <span>04</span>
-              <p>Would a scenario-based evaluation with 3-5 finance/risk participants be sufficient, or should the project prioritise expert interviews / co-design feedback instead?</p>
-            </div>
-          </div>
-
-          <div class="closing-line">
-            <strong>Preferred next step:</strong>
-            run real scenario evaluation, then decide whether to scale into a small panel for the quantitative test.
-          </div>
-        </section>
       </main>
     </div>
 
